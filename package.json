@@ -1,0 +1,25 @@
+{
+  "name": "my_first_frontend_projectz",
+  "version": "1.0.0",
+  "description": "Js enviroment",
+  "main": "",
+  "bin": {
+    "brainGames": "./brain-games.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/possesion/frontend-project-lvl1.git"
+  },
+  "author": "Pos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/possesion/frontend-project-lvl1/issues"
+  },
+  "homepage": "https://github.com/possesion/frontend-project-lvl1#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0"
+  }
+}
