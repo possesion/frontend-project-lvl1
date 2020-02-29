@@ -1,10 +1,11 @@
 {
-  "name": "my_first_frontend_projectz",
+  "name": "pos_package",
   "version": "1.0.0",
   "description": "Js enviroment",
-  "main": "",
+  "main": "src/index.js",
+  "type": "module",
   "bin": {
-    "brainGames": "./brain-games.js"
+    "brain-games": "bin/brain-games.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
