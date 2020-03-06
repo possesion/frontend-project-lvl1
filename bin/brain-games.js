@@ -1,2 +1,4 @@
 #!/usr/bin/env node
-import { greetings } from '../src/index.js';
+import braingames from '../src/index.js';
+
+braingames();
