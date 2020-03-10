@@ -17,5 +17,8 @@
  ## brain-gcd
  Цель игры - найти наибольший общий делитель.
 [brain-gcd](https://asciinema.org/a/oDHxVaMeiy40VoRVCuaMu40jK)
+## brain-progression
+В консоль выводится арифметическая прогрессия. Ваша задача - угадать скрытое число.
+[brain-progression](https://asciinema.org/a/p3ZUWfaHuJv0PK2dYgmschAWI)
 
 

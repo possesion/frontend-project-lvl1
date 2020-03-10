@@ -12,4 +12,10 @@ const braingames = () => {
 };
 
 
-export default braingames;
+const gameEngine = (game, userName) => {
+  const userAnswer = +readlineSync.question('Your answer: ');
+  return userAnswer;
+};
+
+
+export { braingames, gameEngine };

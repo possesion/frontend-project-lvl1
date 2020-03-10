@@ -1,5 +1,5 @@
 import readlineSync from 'readline-sync';
-import braingames from '../src/index.js';
+import { braingames, gameEngine } from '../src/index.js';
 
 
 const brainEven = (user) => {
