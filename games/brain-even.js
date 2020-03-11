@@ -3,24 +3,21 @@ import braingames from '../src/index.js';
 
 // greetings();
 const brainEven = () => {
-  const arr = [];
+  const expression = [];
   const task = [];
   console.log('Answer "yes" if the number is even, otherwise answer "no".');
   for (let i = 0; i < 3; i += 1) {
     const randomNumber = Math.floor(Math.random() * 21) + 1;
     const even = randomNumber % 2 !== 1;
-    arr.push(randomNumber);
+    task.push(randomNumber);
     if (even) {
-      task.push('yes');
+      expression.push('yes');
     }
     if (!even) {
-      task.push('no');
+      expression.push('no');
     }
   }
-  return [arr, task];
+  return [task, expression];
 };
-
-// const game = brainEven();
-braingames(brainEven());
 
 export default brainEven;

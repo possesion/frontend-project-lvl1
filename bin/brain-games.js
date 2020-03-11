@@ -1,4 +1,2 @@
 #!/usr/bin/env node
-import gameEngine from '../src/index.js';
-
-gameEngine();
+import braingames from '../src/index.js';
