@@ -1,12 +1,11 @@
 import readlineSync from 'readline-sync';
-import { braingames, gameEngine } from '../src/index.js';
+import braingames from '../src/index.js';
 
 
-const brainCalc = (brainGame) => {
+const brainCalc = () => {
   console.log('What is the result of the expression?');
-  let expressionStr = '';
-  let expression;
-  let result = 0;
+  const task = [];
+  const arr = [];
   for (let i = 0; i < 3; i += 1) {
     const firstNum = Math.floor(Math.random() * 100) + 1;
     const secondNum = Math.floor(Math.random() * 100) + 1;
@@ -14,38 +13,26 @@ const brainCalc = (brainGame) => {
     const randomSign = arrayofSigns[Math.floor(Math.random() * arrayofSigns.length)];
     switch (randomSign) {
       case '+':
-        expressionStr = `${firstNum} + ${secondNum}`;
-        expression = firstNum + secondNum;
+        arr.push(`${firstNum} + ${secondNum}`);
+        task.push(firstNum + secondNum);
         break;
       case '-':
-        expressionStr = `${firstNum} - ${secondNum}`;
-        expression = firstNum - secondNum;
+        arr.push(`${firstNum} - ${secondNum}`);
+        task.push(firstNum - secondNum);
         break;
       case '*':
-        expressionStr = `${firstNum} * ${secondNum}`;
-        expression = firstNum * secondNum;
+        arr.push(`${firstNum} * ${secondNum}`);
+        task.push(firstNum * secondNum);
         break;
       default:
-        expression = 55;
+        console.log('error');
         break;
     }
-    console.log(`Question: ${expressionStr}`);
-    const correctAnswer = expression;
-    const userAnswer = +readlineSync.question('Your answer: ');
-    if (userAnswer !== +expression) {
-      console.log(` "${userAnswer}" is wrong answer ;(. Correct answer was ${correctAnswer}.
-        Let's try again, ${brainGame} !`);
-      break;
-    }
-    console.log('Correct!');
-    result += 1;
   }
-  if (result === 3) {
-    console.log(`Congratulations, ${brainGame}! `);
-  }
+  return [arr, task];
 };
 
-const userName = braingames();
-brainCalc(userName);
+const game = brainCalc();
+braingames(game);
 
 export default brainCalc;

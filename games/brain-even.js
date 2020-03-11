@@ -1,30 +1,26 @@
 import readlineSync from 'readline-sync';
-import { braingames, gameEngine } from '../src/index.js';
+import braingames from '../src/index.js';
 
-
-const brainEven = (user) => {
-  let result = 0;
+// greetings();
+const brainEven = () => {
+  const arr = [];
+  const task = [];
   console.log('Answer "yes" if the number is even, otherwise answer "no".');
   for (let i = 0; i < 3; i += 1) {
     const randomNumber = Math.floor(Math.random() * 21) + 1;
-    const even = randomNumber % 2 === 0;
-    console.log(`Question: ${randomNumber}`);
-    const userAnswer = readlineSync.question('Your answer: ');
-    const correctAnswer = (even && userAnswer === 'yes') || (!even && userAnswer === 'no');
-    if (!userAnswer === correctAnswer) {
-      console.log(` "${userAnswer}" is wrong answer ;(. Correct answer was ${even ? 'yes' : 'no'}.
-        Let's try again, ${user}!`);
-      break;
+    const even = randomNumber % 2 !== 1;
+    arr.push(randomNumber);
+    if (even) {
+      task.push('yes');
     }
-    console.log('Correct!');
-    result += 1;
+    if (!even) {
+      task.push('no');
+    }
   }
-  if (result === 3) {
-    console.log(`Congratulations, ${user}! `);
-  }
+  return [arr, task];
 };
 
-const userName = braingames();
-brainEven(userName);
+// const game = brainEven();
+braingames(brainEven());
 
 export default brainEven;
