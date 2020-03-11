@@ -20,5 +20,12 @@
 ## brain-progression
 В консоль выводится арифметическая прогрессия. Ваша задача - угадать скрытое число.
 [brain-progression](https://asciinema.org/a/p3ZUWfaHuJv0PK2dYgmschAWI)
+## brain-prime
+В консоль выводится случайное число. Вы должны определить, является ли оно "простым".
+[brain-prime](https://asciinema.org/a/AtARaroQJw3hUNUMt1jfgUzOY)
+
+## Желаю Вам успешной игры!
+
+
 
 
