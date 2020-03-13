@@ -1,5 +1,5 @@
 # Hexlet Brain-games
-<a href="https://codeclimate.com/github/codeclimate/codeclimate/maintainability"><img src="https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability" /></a>
+<a href="https://codeclimate.com/github/possesion/frontend-project-lvl1"><img src="https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability" /></a>
 ![](https://github.com/possesion/frontend-project-lvl1/workflows/frontend-project-actions/badge.svg)
 
  ## Краткое руководство по установке: 

@@ -1,10 +1,8 @@
-import readlineSync from 'readline-sync';
-import braingames from '../src/index.js';
 
-const brainPrime = (user) => {
+const brainPrime = () => {
   const expression = [];
   const task = [];
-  console.log('Answer "yes" if given number is prime. Otherwise answer "no"');
+  const target = 'Answer "yes" if given number is prime. Otherwise answer "no"';
   for (let i = 0; i < 3; i += 1) {
     let step = 2;
     const randomNumber = Math.floor(Math.random() * 100) + 2;
@@ -19,8 +17,7 @@ const brainPrime = (user) => {
       expression.push('no');
     }
   }
-  return [task, expression];
+  return [task, expression, target];
 };
-
 
 export default brainPrime;

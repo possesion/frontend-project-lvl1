@@ -9,9 +9,10 @@ const braingames = (game) => {
     name = readlineSync.question('The name is too short. Correct your answer, please. ');
   }
   console.log(`Hello, ${name}!`);
+  console.log(game[2]);
   for (let i = 0; i < 3; i += 1) {
     console.log(`Question: ${game[0][i]}`);
-    let userAnswer = readlineSync.question('Your answer: ');
+    const userAnswer = readlineSync.question('Your answer: ');
     // if (userAnswer !== 'yes' || userAnswer !== 'no') {
     //   userAnswer = Number(userAnswer);
     // }

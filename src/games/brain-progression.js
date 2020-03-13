@@ -1,11 +1,8 @@
-import readlineSync from 'readline-sync';
-import braingames from '../src/index.js';
 
-
-const brainProgression = (brainGame) => {
-  console.log('What number is missing in the progression?');
-  const expression = [];
-  const task = [];
+const brainProgression = () => {
+  const randomProgression = [];
+  const hiddenValue = [];
+  const target = 'What number is missing in the progression?';
   for (let i = 0; i < 3; i += 1) {
     const arrayofNumbers = [];
     const step = Math.floor(Math.random() * 10) + 1;
@@ -15,12 +12,12 @@ const brainProgression = (brainGame) => {
       arrayofNumbers.push(firstProgressionNumber);
     }
     const correctAnswer = arrayofNumbers[Math.floor(Math.random() * arrayofNumbers.length)];
-    expression.push(correctAnswer);
+    randomProgression.push(correctAnswer);
     const strFromArray = arrayofNumbers.join(' ');
     const replacedSymbol = strFromArray.replace(correctAnswer, '..');
-    task.push(replacedSymbol);
+    hiddenValue.push(replacedSymbol);
   }
-  return [task, expression];
+  return [hiddenValue, randomProgression, target];
 };
 
 
