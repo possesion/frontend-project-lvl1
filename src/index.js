@@ -12,16 +12,16 @@ const braingames = (game) => {
   console.log(game[2]);
   for (let i = 0; i < 3; i += 1) {
     console.log(`Question: ${game[0][i]}`);
-    const userAnswer = readlineSync.question('Your answer: ');
-    // if (userAnswer !== 'yes' || userAnswer !== 'no') {
-    //   userAnswer = Number(userAnswer);
-    // }
-    if (userAnswer != game[1][i]) {
+    let userAnswer = readlineSync.question('Your answer: ');
+    if (userAnswer !== 'yes' || userAnswer !== 'no') {
+      userAnswer = Number(userAnswer);
+    }
+    if (userAnswer !== game[1][i]) {
       console.log(` "${userAnswer}" is wrong answer ;(. Correct answer was ${game[1][i]}.
         Let's try again, ${name}!`);
       break;
     }
-    if (userAnswer == game[1][i]) {
+    if (userAnswer === game[1][i]) {
       console.log('Correct!');
       result += 1;
     }
