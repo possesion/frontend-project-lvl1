@@ -1,24 +1,25 @@
+import braingames from '../index.js';
+import createRandomNumber from '../magicNumbers.js';
 
 const brainProgression = () => {
-  const randomProgression = [];
-  const hiddenValue = [];
-  const target = 'What number is missing in the progression?';
-  for (let i = 0; i < 3; i += 1) {
-    const arrayofNumbers = [];
-    const step = Math.floor(Math.random() * 10) + 1;
-    let firstProgressionNumber = Math.floor(Math.random() * 100) + 1;
-    for (let a = 0; a < 11; a += 1) {
-      firstProgressionNumber += step;
-      arrayofNumbers.push(firstProgressionNumber);
+  const gameRule = 'What number is missing in the progression?';
+  const theProgressionGame = braingames(gameRule);
+  for (let gameLap = 0; gameLap < 3; gameLap += 1) {
+    const randomNumber = createRandomNumber(101);
+    const randomProgression = [];
+    const progresionDifference = createRandomNumber(11);
+    for (let progressionIndex = 1; progressionIndex < 11; progressionIndex += 1) {
+      const progressionElem = randomNumber + progressionIndex * progresionDifference;
+      randomProgression.push(progressionElem);
     }
-    const correctAnswer = arrayofNumbers[Math.floor(Math.random() * arrayofNumbers.length)];
-    randomProgression.push(correctAnswer);
-    const strFromArray = arrayofNumbers.join(' ');
-    const replacedSymbol = strFromArray.replace(correctAnswer, '..');
-    hiddenValue.push(replacedSymbol);
+    const correctAnswer = randomProgression[createRandomNumber(randomProgression.length)];
+    const progressionText = randomProgression.join(' ');
+    const showExercise = progressionText.replace(correctAnswer, '..');
+    const gameLaunch = theProgressionGame(showExercise, correctAnswer);
+    if (gameLaunch === false) {
+      return;
+    }
   }
-  return [hiddenValue, randomProgression, target];
 };
-
 
 export default brainProgression;

@@ -1,23 +1,28 @@
+import braingames from '../index.js';
+import createRandomNumber from '../magicNumbers.js';
 
-const brainPrime = () => {
-  const expression = [];
-  const task = [];
-  const target = 'Answer "yes" if given number is prime. Otherwise answer "no"';
-  for (let i = 0; i < 3; i += 1) {
-    let step = 2;
-    const randomNumber = Math.floor(Math.random() * 100) + 2;
-    task.push(randomNumber);
-    while (randomNumber % step !== 0) {
-      step += 1;
+const checkPrime = () => {
+  let correctAnswer;
+  const gameRule = 'Answer "yes" if given number is prime. Otherwise answer "no"';
+  const showRules = braingames(gameRule);
+  for (let gameStep = 0; gameStep < 3; gameStep += 1) {
+    const randomNumber = createRandomNumber(101);
+    if (randomNumber < 2) {
+      correctAnswer = 'no';
     }
-    if (randomNumber === step) {
-      expression.push('yes');
+    for (let denom = 2; denom < randomNumber; denom += 1) {
+      if (randomNumber % denom === 0) {
+        correctAnswer = 'no';
+        break;
+      } else {
+        correctAnswer = 'yes';
+      }
     }
-    if (randomNumber !== step) {
-      expression.push('no');
+    const gameLaunch = showRules(randomNumber, correctAnswer);
+    if (gameLaunch === false) {
+      return;
     }
   }
-  return [task, expression, target];
 };
 
-export default brainPrime;
+export default checkPrime;

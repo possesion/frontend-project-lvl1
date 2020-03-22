@@ -1,32 +1,41 @@
+import braingames from '../index.js';
+import createRandomNumber from '../magicNumbers.js';
 
-const brainCalc = () => {
-  const randomExpression = [];
-  const resultOfCalculate = [];
-  const target = 'What is the result of the expression?';
-  for (let i = 0; i < 3; i += 1) {
-    const firstNum = Math.floor(Math.random() * 100) + 1;
-    const secondNum = Math.floor(Math.random() * 100) + 1;
+const calculate = () => {
+  const expressions = [];
+  const calculationResults = [];
+  const gameRule = 'What is the result of the expressions?';
+  const showRules = braingames(gameRule);
+  for (let gameStep = 0; gameStep < 3; gameStep += 1) {
+    const firstNum = createRandomNumber(101);
+    const secondNum = createRandomNumber(101);
     const symbols = ['+', '-', '*'];
-    const randomSign = symbols[Math.floor(Math.random() * symbols.length)];
+    const randomSign = symbols[createRandomNumber(symbols.length)];
     switch (randomSign) {
       case '+':
-        randomExpression.push(`${firstNum} + ${secondNum}`);
-        resultOfCalculate.push(firstNum + secondNum);
+        calculationResults.push(firstNum + secondNum);
         break;
       case '-':
-        randomExpression.push(`${firstNum} - ${secondNum}`);
-        resultOfCalculate.push(firstNum - secondNum);
+        calculationResults.push(firstNum - secondNum);
         break;
       case '*':
-        randomExpression.push(`${firstNum} * ${secondNum}`);
-        resultOfCalculate.push(firstNum * secondNum);
+        calculationResults.push(firstNum * secondNum);
         break;
       default:
-        console.log('error');
         break;
     }
+    if (randomSign === '+') {
+      expressions.push(`${firstNum} + ${secondNum}`);
+    } else if (randomSign === '-') {
+      expressions.push(`${firstNum} - ${secondNum}`);
+    }
+    expressions.push(`${firstNum} * ${secondNum}`);
+    const gameLaunch = showRules(expressions[gameStep], calculationResults[gameStep], gameRule);
+    if (gameLaunch === false) {
+      return;
+    }
   }
-  return [randomExpression, resultOfCalculate, target];
 };
 
-export default brainCalc;
+
+export default calculate;

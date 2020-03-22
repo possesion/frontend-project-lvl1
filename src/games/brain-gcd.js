@@ -1,24 +1,25 @@
+import braingames from '../index.js';
+import createRandomNumber from '../magicNumbers.js';
 
-const brainGcd = () => {
-  function gcd(firstNum, secondNum) {
-    if (secondNum > firstNum) {
-      return gcd(secondNum, firstNum);
-    }
-    if (!secondNum) {
+const getGcd = () => {
+  const gcd = (firstNum, secondNum) => {
+    if (secondNum === 0) {
       return firstNum;
     }
     return gcd(secondNum, firstNum % secondNum);
+  };
+  const gameRule = 'Find the greatest common divisor of given numbers.';
+  const showRules = braingames(gameRule);
+  for (let gameStep = 0; gameStep < 3; gameStep += 1) {
+    const firstNum = createRandomNumber(101);
+    const secondNum = createRandomNumber(101);
+    const exerciseText = `${firstNum} ${secondNum}`;
+    const correctAnswer = gcd(firstNum, secondNum);
+    const gameLaunch = showRules(exerciseText, correctAnswer);
+    if (gameLaunch === false) {
+      return;
+    }
   }
-  const gcdArray = [];
-  const randomExpression = [];
-  const target = 'Find the greatest common divisor of given numbers.';
-  for (let i = 0; i < 3; i += 1) {
-    const firstNum = Math.floor(Math.random() * 100) + 1;
-    const secondNum = Math.floor(Math.random() * 100) + 1;
-    gcdArray.push(gcd(firstNum, secondNum));
-    randomExpression.push(`${firstNum} ${secondNum}`);
-  }
-  return [randomExpression, gcdArray, target];
 };
 
-export default brainGcd;
+export default getGcd;
