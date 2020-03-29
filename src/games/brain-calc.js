@@ -1,41 +1,52 @@
-import braingames from '../index.js';
-import createRandomNumber from '../magicNumbers.js';
+import launchBrainGames from '../index.js';
+import createRandomNumber from '../randomNum-generator.js';
 
-const calculate = () => {
-  const expressions = [];
-  const calculationResults = [];
-  const gameRule = 'What is the result of the expressions?';
-  const showRules = braingames(gameRule);
-  for (let gameStep = 0; gameStep < 3; gameStep += 1) {
-    const firstNum = createRandomNumber(101);
-    const secondNum = createRandomNumber(101);
-    const symbols = ['+', '-', '*'];
-    const randomSign = symbols[createRandomNumber(symbols.length)];
-    switch (randomSign) {
-      case '+':
-        calculationResults.push(firstNum + secondNum);
-        break;
-      case '-':
-        calculationResults.push(firstNum - secondNum);
-        break;
-      case '*':
-        calculationResults.push(firstNum * secondNum);
-        break;
-      default:
-        break;
+const getExpressionValue = (firstNum, secondNum, operator) => {
+  let result = 0;
+  switch (operator) {
+    case '+':
+      result = firstNum + secondNum;
+      break;
+    case '-':
+      result = firstNum - secondNum;
+      break;
+    case '*':
+      result = firstNum * secondNum;
+      break;
+    default:
+      break;
+  }
+  return result;
+};
+const getGameData = () => {
+  const gameQuestions = [];
+  const correctAnswers = [];
+  const gameRule = 'What is the result of the expression?';
+  for (let expressionsCount = 0; expressionsCount < 3; expressionsCount += 1) {
+    const firstNumber = createRandomNumber(1, 100);
+    const secondNumber = createRandomNumber(1, 100);
+    const operators = ['+', '-', '*'];
+    const randomOperator = operators[createRandomNumber(0, operators.length)];
+    const gameAnswer = getExpressionValue(firstNumber, secondNumber, randomOperator);
+    correctAnswers.push(gameAnswer);
+    if (randomOperator === '+') {
+      gameQuestions.push(`${firstNumber} + ${secondNumber}`);
     }
-    if (randomSign === '+') {
-      expressions.push(`${firstNum} + ${secondNum}`);
-    } else if (randomSign === '-') {
-      expressions.push(`${firstNum} - ${secondNum}`);
+    if (randomOperator === '-') {
+      gameQuestions.push(`${firstNumber} - ${secondNumber}`);
     }
-    expressions.push(`${firstNum} * ${secondNum}`);
-    const gameLaunch = showRules(expressions[gameStep], calculationResults[gameStep], gameRule);
-    if (gameLaunch === false) {
-      return;
+    if (randomOperator === '*') {
+      gameQuestions.push(`${firstNumber} * ${secondNumber}`);
     }
   }
+  return [gameQuestions, correctAnswers, gameRule];
 };
 
+const gameData = getGameData();
+const [questionsForUser, expressionResolves, gameRule] = [gameData[0], gameData[1], gameData[2]];
+const gameEngine = launchBrainGames();
+const launchBrainCalc = () => {
+  gameEngine(questionsForUser, expressionResolves, gameRule);
+};
 
-export default calculate;
+export default launchBrainCalc;

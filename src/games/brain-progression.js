@@ -1,25 +1,36 @@
-import braingames from '../index.js';
-import createRandomNumber from '../magicNumbers.js';
+import launchBrainGames from '../index.js';
+import createRandomNumber from '../randomNum-generator.js';
 
-const brainProgression = () => {
-  const gameRule = 'What number is missing in the progression?';
-  const theProgressionGame = braingames(gameRule);
-  for (let gameLap = 0; gameLap < 3; gameLap += 1) {
-    const randomNumber = createRandomNumber(101);
+
+const getRandomNumFromArr = (array) => {
+  const getRandomElem = array[createRandomNumber(0, array.length)];
+  return getRandomElem;
+};
+const getGameData = () => {
+  const rule = 'What number is missing in the progression?';
+  const gameQuestions = [];
+  const expressionResolves = [];
+
+  for (let gameStep = 0; gameStep < 3; gameStep += 1) {
+    const randomNumber = createRandomNumber(1, 101);
     const progresionMembers = [];
-    const progresionDifference = createRandomNumber(11);
-    for (let progressionIndex = 1; progressionIndex < 11; progressionIndex += 1) {
-      const progressionElem = randomNumber + progressionIndex * progresionDifference;
+    const progresionDifference = createRandomNumber(1, 11);
+    for (let numbersCount = 0; numbersCount < 10; numbersCount += 1) {
+      const progressionElem = randomNumber + numbersCount * progresionDifference;
       progresionMembers.push(progressionElem);
     }
-    const correctAnswer = progresionMembers[createRandomNumber(progresionMembers.length)];
+    const correctAnswer = getRandomNumFromArr(progresionMembers);
+    expressionResolves.push(correctAnswer);
     const progressionText = progresionMembers.join(' ');
     const showExercise = progressionText.replace(correctAnswer, '..');
-    const gameLaunch = theProgressionGame(showExercise, correctAnswer);
-    if (gameLaunch === false) {
-      return;
-    }
+    gameQuestions.push(showExercise);
   }
+  return [gameQuestions, expressionResolves, rule];
 };
-
-export default brainProgression;
+const gameData = getGameData();
+const [questionsForUser, expressionResolves, gameRule] = [gameData[0], gameData[1], gameData[2]];
+const gameEngine = launchBrainGames();
+const launchBrainProgression = () => {
+  gameEngine(questionsForUser, expressionResolves, gameRule);
+};
+export default launchBrainProgression;
