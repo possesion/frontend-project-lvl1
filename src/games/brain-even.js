@@ -1,34 +1,24 @@
-import launchBrainGames from '../index.js';
-import createRandomNumber from '../randomNum-generator.js';
+import runBrainGames from '../index.js';
+import createRandomNumber from '../numberRandomizer.js';
 
 const isEven = (num) => {
-  let correctAnswer = '';
-  if (num % 2 !== 1) {
-    correctAnswer = 'yes';
-  } else {
-    correctAnswer = 'no';
-  }
-  return correctAnswer;
+  num % 2 === 0;
 };
 
 const getGameData = () => {
   const gameRule = 'Answer "yes" if the number is isEven, otherwise answer "no".';
-  const gameQuestions = [];
-  const correctAnswers = [];
-  for (let gameStep = 0; gameStep < 3; gameStep += 1) {
+  const gameData = [];
+  const roundsCount = 3;
+  for (let gameRound = 0; gameRound < roundsCount; gameRound += 1) {
     const randomNumber = createRandomNumber(1, 101);
-    const exerciseText = isEven(randomNumber);
-    correctAnswers.push(exerciseText);
-    gameQuestions.push(randomNumber);
+    const answer = isEven(randomNumber) ? 'yes' : 'no';
+    gameData.push([randomNumber, answer]);
   }
-
-  return [gameQuestions, correctAnswers, gameRule];
-};
-const gameData = getGameData();
-const [questionsForUser, expressionResolves, gameRule] = [gameData[0], gameData[1], gameData[2]];
-const gameEngine = launchBrainGames();
-const launchBrainEven = () => {
-  gameEngine(questionsForUser, expressionResolves, gameRule);
+  return [gameData, gameRule];
 };
 
-export default launchBrainEven;
+const runBrainEven = () => {
+  runBrainGames(getGameData);
+};
+
+export default runBrainEven;
