@@ -4,8 +4,9 @@ import createRandomNumber from '../numberRandomizer.js';
 const isPrime = (number) => {
   number <= 2;
   for (let denom = 2; denom < number; denom += 1) {
-    number % denom === 0;
+    return number % denom === 0;
   }
+  return;
 };
 
 const getGameData = () => {

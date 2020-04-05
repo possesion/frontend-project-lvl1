@@ -2,7 +2,7 @@ import runBrainGames from '../index.js';
 import createRandomNumber from '../numberRandomizer.js';
 
 const isEven = (num) => {
-  num % 2 === 0;
+  return num % 2 === 0;
 };
 
 const getGameData = () => {

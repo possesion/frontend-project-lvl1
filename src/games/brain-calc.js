@@ -4,18 +4,14 @@ import createRandomNumber from '../numberRandomizer.js';
 const calculate = (operator, firstNum, secondNum) => {
   switch (operator) {
     case '+':
-      firstNum + secondNum;
-      break;
+      return firstNum + secondNum;
     case '-':
-      firstNum - secondNum;
-      break;
+      return firstNum - secondNum;
     case '*':
-      firstNum * secondNum;
-      break;
+      return firstNum * secondNum;
     default:
       break;
   }
-  return;
 };
 const getGameData = () => {
   const gameData = [];
@@ -29,8 +25,8 @@ const getGameData = () => {
     const gameAnswer = calculate(randomOperator, firstNumber, secondNumber);
     const gameText = `${firstNumber} ${randomOperator} ${secondNumber}`;
     gameData.push([gameText], [String(gameAnswer)]);
-  return [gameData, gameRule];
   }
+  return [gameData, gameRule];
 };
 
 const runBrainCalc = () => {

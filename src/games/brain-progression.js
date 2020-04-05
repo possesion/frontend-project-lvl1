@@ -14,11 +14,10 @@ const getGameData = () => {
       const progressionElem = randomNumber + numbersCount * progresionDifference;
       progresionMembers.push(progressionElem);
     }
-    const correctAnswer = progresionMembers[createRandomNumber(0, array.length)];
+    const correctAnswer = progresionMembers[createRandomNumber(0, progresionMembers.length)];
     const gameText = progresionMembers.join(' ');
     const question = gameText.replace(correctAnswer, '..');
-    correctAnswers.push([question], [String(correctAnswer)]);
-
+    gameData.push([question], [String(correctAnswer)]);
   }
   return [gameData, gameRule];
 };
