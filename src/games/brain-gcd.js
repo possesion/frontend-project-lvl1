@@ -17,7 +17,7 @@ const getGameData = () => {
     const secondNum = createRandomNumber(1, 101);
     const gameText = `${firstNum} ${secondNum}`;
     const answer = gcd(firstNum, secondNum);
-    gameData.push([gameText], [String(answer)]);
+    gameData.push([gameText, String(answer)]);
   }
   return [gameData, gameRule];
 };

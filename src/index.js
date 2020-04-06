@@ -1,23 +1,26 @@
 import readlineSync from 'readline-sync';
 
 const runBrainGames = (game) => {
-  const gameData = game();
+  const glogalData = game();
+  const [gameData, gameRule] = glogalData;
   const roundsCount = 3;
-  const [gameQuestions, correctAnswers, gameRule] = [gameData[0][0], gameData[0][1], gameData[1]];  
   console.log('Welcome to the Brain Games!');
   const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}!`);
   console.log(gameRule);
   for (let gameRound = 0; gameRound < roundsCount; gameRound += 1) {
-    console.log(`Question: ${gameQuestions[gameRound]}`);
+    const [gameQuestions, correctAnswers] = gameData[gameRound];
+    console.log(`Question: ${gameQuestions}`);
     const userAnswer = readlineSync.question('Your answer: ');
-    if (userAnswer === correctAnswers[gameRound]) {
+    if (userAnswer === correctAnswers) {
       console.log('Correct!');
     } else {
-      console.log(`"${userAnswer}" is wrong answer ;(. Correct answer was ${correctAnswers[gameRound]}. Let's try again, ${name}!`);
+      console.log(`"${userAnswer}" is wrong answer ;(. Correct answer was ${correctAnswers}. Let's try again, ${name}!`);
       return;
     }
-    console.log(`Congratulations, ${name}!`);
+    if (gameRound === 2) {
+      console.log(`Congratulations, ${name}!`);
+    }
   }
 };
 

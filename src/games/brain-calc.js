@@ -24,7 +24,7 @@ const getGameData = () => {
     const randomOperator = operators[createRandomNumber(0, operators.length)];
     const gameAnswer = calculate(randomOperator, firstNumber, secondNumber);
     const gameText = `${firstNumber} ${randomOperator} ${secondNumber}`;
-    gameData.push([gameText], [String(gameAnswer)]);
+    gameData.push([gameText, String(gameAnswer)]);
   }
   return [gameData, gameRule];
 };

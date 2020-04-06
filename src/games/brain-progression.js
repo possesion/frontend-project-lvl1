@@ -17,7 +17,7 @@ const getGameData = () => {
     const correctAnswer = progresionMembers[createRandomNumber(0, progresionMembers.length)];
     const gameText = progresionMembers.join(' ');
     const question = gameText.replace(correctAnswer, '..');
-    gameData.push([question], [String(correctAnswer)]);
+    gameData.push([question, String(correctAnswer)]);
   }
   return [gameData, gameRule];
 };

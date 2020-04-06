@@ -2,11 +2,14 @@ import runBrainGames from '../index.js';
 import createRandomNumber from '../numberRandomizer.js';
 
 const isPrime = (number) => {
-  number <= 2;
+  let result = 0;
   for (let denom = 2; denom < number; denom += 1) {
-    return number % denom === 0;
+    result = number % denom;
+    if (result === 0 && number > 1) {
+      return false;
+    }
   }
-  return;
+  return true;
 };
 
 const getGameData = () => {
@@ -16,7 +19,7 @@ const getGameData = () => {
   for (let gameRound = 0; gameRound < roundsCount; gameRound += 1) {
     const randomNumber = createRandomNumber(1, 101);
     const gameAnswer = isPrime(randomNumber) ? 'yes' : 'no';
-    gameData.push([randomNumber], [gameAnswer]);
+    gameData.push([randomNumber, gameAnswer]);
   }
   return [gameData, gameRule];
 };
