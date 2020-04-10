@@ -1,4 +1,5 @@
 import runBrainGames from '../index.js';
+import { roundsCount } from '../index.js';
 import createRandomNumber from '../numberRandomizer.js';
 
 const gcd = (firstNum, secondNum) => {
@@ -9,21 +10,23 @@ const gcd = (firstNum, secondNum) => {
 };
 
 const getGameData = () => {
-  const gameData = [];
-  const roundsCount = 3;
-  const gameRule = 'Find the greatest common divisor of given numbers.';
-  for (let gameRound = 0; gameRound < roundsCount; gameRound += 1) {
     const firstNum = createRandomNumber(1, 101);
     const secondNum = createRandomNumber(1, 101);
-    const gameText = `${firstNum} ${secondNum}`;
+    const question = `${firstNum} ${secondNum}`;
     const answer = gcd(firstNum, secondNum);
-    gameData.push([gameText, String(answer)]);
+  return [question, answer];
+};
+const runGcd = () => {
+  const gameData = [];
+  for (let gameRound = 0; gameRound < roundsCount; gameRound += 1) {
+    const [question, answer] = getGameData();
+    gameData.push([question, String(answer)]);
   }
-  return [gameData, gameRule];
+  return gameData;
 };
 
-const runBrainGcd = () => {
-  runBrainGames(getGameData);
+export default() => {
+  const gameRule = 'Find the greatest common divisor of given numbers.';
+  runBrainGames(runGcd, gameRule);
 };
 
-export default runBrainGcd;

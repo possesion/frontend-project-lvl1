@@ -1,4 +1,5 @@
 import runBrainGames from '../index.js';
+import { roundsCount } from '../index.js';
 import createRandomNumber from '../numberRandomizer.js';
 
 const calculate = (operator, firstNum, secondNum) => {
@@ -14,23 +15,26 @@ const calculate = (operator, firstNum, secondNum) => {
   }
 };
 const getGameData = () => {
-  const gameData = [];
-  const roundsCount = 3;
-  const gameRule = 'What is the result of the expression?';
-  for (let gameRound = 0; gameRound < roundsCount; gameRound += 1) {
     const firstNumber = createRandomNumber(1, 100);
     const secondNumber = createRandomNumber(1, 100);
     const operators = ['+', '-', '*'];
     const randomOperator = operators[createRandomNumber(0, operators.length)];
-    const gameAnswer = calculate(randomOperator, firstNumber, secondNumber);
-    const gameText = `${firstNumber} ${randomOperator} ${secondNumber}`;
-    gameData.push([gameText, String(gameAnswer)]);
+    const answer = calculate(randomOperator, firstNumber, secondNumber);
+    const question = `${firstNumber} ${randomOperator} ${secondNumber}`;
+  return [question, answer];
+};
+
+const runCalc = () => {
+  const gameData = [];
+  for (let gameRound = 0; gameRound < roundsCount; gameRound += 1) {
+    const [question, answer] = getGameData();
+    gameData.push([question, String(answer)]);
   }
-  return [gameData, gameRule];
+  return gameData;
 };
 
-const runBrainCalc = () => {
-  runBrainGames(getGameData);
+export default() => {
+  const gameRule = 'What is the result of the expression?';
+  runBrainGames(runCalc, gameRule);
 };
 
-export default runBrainCalc;

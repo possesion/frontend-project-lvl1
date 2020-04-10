@@ -1,11 +1,13 @@
 import runBrainGames from '../index.js';
+import { roundsCount } from '../index.js';
 import createRandomNumber from '../numberRandomizer.js';
 
 const isPrime = (number) => {
-  let result = 0;
+  if (number < 2) {
+    return false;
+  }
   for (let denom = 2; denom < number; denom += 1) {
-    result = number % denom;
-    if (result === 0 && number > 1) {
+    if (number % denom === 0) {
       return false;
     }
   }
@@ -13,19 +15,20 @@ const isPrime = (number) => {
 };
 
 const getGameData = () => {
-  const gameRule = 'Answer "yes" if given number is prime. Otherwise answer "no"';
+    const question = createRandomNumber(1, 101);
+    const answer = isPrime(question) ? 'yes' : 'no';
+  return [question, answer];
+};
+const runPrime = () => {
   const gameData = [];
-  const roundsCount = 3;
   for (let gameRound = 0; gameRound < roundsCount; gameRound += 1) {
-    const randomNumber = createRandomNumber(1, 101);
-    const gameAnswer = isPrime(randomNumber) ? 'yes' : 'no';
-    gameData.push([randomNumber, gameAnswer]);
+    const [question, answer] = getGameData();
+    gameData.push([question, answer]);
   }
-  return [gameData, gameRule];
-};
+  return gameData;
+}
 
-const runBrainPrime = () => {
-  runBrainGames(getGameData);
+export default() => {
+  const gameRule = 'Answer "yes" if given number is prime. Otherwise answer "no"';
+  runBrainGames(runPrime, gameRule);
 };
-
-export default runBrainPrime;

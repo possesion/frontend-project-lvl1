@@ -1,28 +1,37 @@
 import runBrainGames from '../index.js';
+import { roundsCount } from '../index.js';
 import createRandomNumber from '../numberRandomizer.js';
 
-const getGameData = () => {
-  const gameRule = 'What number is missing in the progression?';
-  const progressionSize = 10;
-  const gameData = [];
-  const roundsCount = 3;
-  for (let gameRound = 0; gameRound < roundsCount; gameRound += 1) {
-    const randomNumber = createRandomNumber(1, 101);
-    const progresionMembers = [];
-    const progresionDifference = createRandomNumber(1, 11);
-    for (let numbersCount = 0; numbersCount < progressionSize; numbersCount += 1) {
-      const progressionElem = randomNumber + numbersCount * progresionDifference;
-      progresionMembers.push(progressionElem);
-    }
-    const correctAnswer = progresionMembers[createRandomNumber(0, progresionMembers.length)];
-    const gameText = progresionMembers.join(' ');
-    const question = gameText.replace(correctAnswer, '..');
-    gameData.push([question, String(correctAnswer)]);
+const progressionSize = 10;
+const getQuestion = (firstElement, difference, index) => {
+  const members = [];  
+  for (let numbersCount = 0; numbersCount < progressionSize; numbersCount += 1) {
+    const element = firstElement + numbersCount * difference;
+    members.push(element);
   }
-  return [gameData, gameRule];
-};
-const runBrainProgression = () => {
-  runBrainGames(getGameData);
+  const answer = members[index];
+  members[index] = ['..'];
+  const question = members.join(' ');
+  return [question, answer];
+}
+
+const getGameData = () => {
+  const randomIndex = createRandomNumber(0, progressionSize - 1); 
+  const firstElement = createRandomNumber(1, 101);
+  const difference = createRandomNumber(1, 11);
+  const [question, answer] = getQuestion(firstElement, difference, randomIndex);
+  return [question, answer];
 };
 
-export default runBrainProgression;
+const runProgression = () => {
+  const gameData = [];
+  for (let gameRound = 0; gameRound < roundsCount; gameRound += 1) {
+    const [question, answer] = getGameData();
+    gameData.push([question, String(answer)]);
+  }
+  return gameData;
+};
+export default() => {
+  const gameRule = 'What number is missing in the progression?';
+  runBrainGames(runProgression, gameRule);
+};
