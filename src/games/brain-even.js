@@ -1,11 +1,10 @@
-import runBrainGames from '../index.js';
-import { roundsCount } from '../index.js';
+import runBrainGames, { roundsCount } from '../index.js';
 import createRandomNumber from '../numberRandomizer.js';
 
 const isEven = (num) => num % 2 === 0;
 const getGameData = () => {
-    const question = createRandomNumber(1, 101);
-    const answer = isEven(question) ? 'yes' : 'no';
+  const question = createRandomNumber(1, 101);
+  const answer = isEven(question) ? 'yes' : 'no';
   return [question, answer];
 };
 const runEven = () => {
@@ -17,7 +16,7 @@ const runEven = () => {
   return gameData;
 };
 
-export default() => {  
+export default () => {
   const gameRule = 'Answer "yes" if the number is isEven, otherwise answer "no".';
   runBrainGames(runEven, gameRule);
 };

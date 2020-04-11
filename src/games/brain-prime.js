@@ -1,5 +1,4 @@
-import runBrainGames from '../index.js';
-import { roundsCount } from '../index.js';
+import runBrainGames, { roundsCount } from '../index.js';
 import createRandomNumber from '../numberRandomizer.js';
 
 const isPrime = (number) => {
@@ -15,8 +14,8 @@ const isPrime = (number) => {
 };
 
 const getGameData = () => {
-    const question = createRandomNumber(1, 101);
-    const answer = isPrime(question) ? 'yes' : 'no';
+  const question = createRandomNumber(1, 101);
+  const answer = isPrime(question) ? 'yes' : 'no';
   return [question, answer];
 };
 const runPrime = () => {
@@ -26,9 +25,9 @@ const runPrime = () => {
     gameData.push([question, answer]);
   }
   return gameData;
-}
+};
 
-export default() => {
+export default () => {
   const gameRule = 'Answer "yes" if given number is prime. Otherwise answer "no"';
   runBrainGames(runPrime, gameRule);
 };

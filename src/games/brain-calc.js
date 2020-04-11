@@ -1,5 +1,4 @@
-import runBrainGames from '../index.js';
-import { roundsCount } from '../index.js';
+import runBrainGames, { roundsCount } from '../index.js';
 import createRandomNumber from '../numberRandomizer.js';
 
 const calculate = (operator, firstNum, secondNum) => {
@@ -13,14 +12,15 @@ const calculate = (operator, firstNum, secondNum) => {
     default:
       break;
   }
+  return operator;
 };
 const getGameData = () => {
-    const firstNumber = createRandomNumber(1, 100);
-    const secondNumber = createRandomNumber(1, 100);
-    const operators = ['+', '-', '*'];
-    const randomOperator = operators[createRandomNumber(0, operators.length)];
-    const answer = calculate(randomOperator, firstNumber, secondNumber);
-    const question = `${firstNumber} ${randomOperator} ${secondNumber}`;
+  const firstNumber = createRandomNumber(1, 100);
+  const secondNumber = createRandomNumber(1, 100);
+  const operators = ['+', '-', '*'];
+  const randomOperator = operators[createRandomNumber(0, operators.length)];
+  const answer = calculate(randomOperator, firstNumber, secondNumber);
+  const question = `${firstNumber} ${randomOperator} ${secondNumber}`;
   return [question, answer];
 };
 
@@ -33,8 +33,7 @@ const runCalc = () => {
   return gameData;
 };
 
-export default() => {
+export default () => {
   const gameRule = 'What is the result of the expression?';
   runBrainGames(runCalc, gameRule);
 };
-

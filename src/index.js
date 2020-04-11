@@ -7,7 +7,8 @@ const runBrainGames = (game, gameRule) => {
   const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}!`);
   console.log(gameRule);
-  for (let round of gameData) {
+  /* eslint-disable */
+  for (const round of gameData) {
     const [question, answer] = round;
     console.log(`Question: ${question}`);
     const userAnswer = readlineSync.question('Your answer: ');
@@ -18,6 +19,7 @@ const runBrainGames = (game, gameRule) => {
       return;
     }
   }
+  /* eslint-disable */
   console.log(`Congratulations, ${name}!`);
 };
 
