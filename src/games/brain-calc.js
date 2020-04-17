@@ -19,7 +19,7 @@ const getGameData = () => {
   const secondNumber = createRandomNumber(1, 100);
   const operators = ['+', '-', '*'];
   const randomOperator = operators[createRandomNumber(0, operators.length)];
-  const answer = calculate(randomOperator, firstNumber, secondNumber);
+  const answer = String(calculate(randomOperator, firstNumber, secondNumber));
   const question = `${firstNumber} ${randomOperator} ${secondNumber}`;
   return [question, answer];
 };
@@ -28,7 +28,7 @@ export default () => {
   const rounds = [];
   for (let gameRound = 0; gameRound < roundsCount; gameRound += 1) {
     const [question, answer] = getGameData();
-    rounds.push([question, String(answer)]);
+    rounds.push([question, answer]);
   }
   runBrainGames(rounds, description);
 };

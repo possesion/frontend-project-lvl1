@@ -9,7 +9,7 @@ const getQuestion = (firstElement, difference, index) => {
     const element = firstElement + numbersCount * difference;
     members.push(element);
   }
-  const answer = members[index];
+  const answer = String(members[index]);
   members[index] = '..';
   const question = members.join(' ');
   return [question, answer];
@@ -27,7 +27,7 @@ export default () => {
   const rounds = [];
   for (let gameRound = 0; gameRound < roundsCount; gameRound += 1) {
     const [question, answer] = getGameData();
-    rounds.push([question, String(answer)]);
+    rounds.push([question, answer]);
   }
   runBrainGames(rounds, description);
 };

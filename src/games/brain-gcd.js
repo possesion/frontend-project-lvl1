@@ -13,7 +13,7 @@ const getGameData = () => {
   const firstNum = createRandomNumber(1, 101);
   const secondNum = createRandomNumber(1, 101);
   const question = `${firstNum} ${secondNum}`;
-  const answer = gcd(firstNum, secondNum);
+  const answer = String(gcd(firstNum, secondNum));
   return [question, answer];
 };
 
@@ -21,7 +21,7 @@ export default () => {
   const rounds = [];
   for (let gameRound = 0; gameRound < roundsCount; gameRound += 1) {
     const [question, answer] = getGameData();
-    rounds.push([question, String(answer)]);
+    rounds.push([question, answer]);
   }
   runBrainGames(rounds, description);
 };
