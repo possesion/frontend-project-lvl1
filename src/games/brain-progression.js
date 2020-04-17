@@ -1,6 +1,7 @@
 import runBrainGames, { roundsCount } from '../index.js';
 import createRandomNumber from '../numberRandomizer.js';
 
+const description = 'What number is missing in the progression?';
 const progressionSize = 10;
 const getQuestion = (firstElement, difference, index) => {
   const members = [];
@@ -9,7 +10,7 @@ const getQuestion = (firstElement, difference, index) => {
     members.push(element);
   }
   const answer = members[index];
-  members[index] = ['..'];
+  members[index] = '..';
   const question = members.join(' ');
   return [question, answer];
 };
@@ -22,15 +23,11 @@ const getGameData = () => {
   return [question, answer];
 };
 
-const runProgression = () => {
-  const gameData = [];
+export default () => {
+  const rounds = [];
   for (let gameRound = 0; gameRound < roundsCount; gameRound += 1) {
     const [question, answer] = getGameData();
-    gameData.push([question, String(answer)]);
+    rounds.push([question, String(answer)]);
   }
-  return gameData;
-};
-export default () => {
-  const gameRule = 'What number is missing in the progression?';
-  runBrainGames(runProgression, gameRule);
+  runBrainGames(rounds, description);
 };

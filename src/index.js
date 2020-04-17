@@ -1,25 +1,24 @@
 import readlineSync from 'readline-sync';
 
 export const roundsCount = 3;
-const runBrainGames = (game, gameRule) => {
-  const gameData = game();
+const runBrainGames = (rounds, description) => {
   console.log('Welcome to the Brain Games!');
   const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}!`);
-  console.log(gameRule);
-  /* eslint-disable */
-  for (const round of gameData) {
-    const [question, answer] = round;
+  console.log(description);
+  /* eslint no-restricted-syntax: ["off", "ForOffStatement"] */
+  for (const number of rounds) {
+    const [question, answer] = number;
     console.log(`Question: ${question}`);
     const userAnswer = readlineSync.question('Your answer: ');
     if (userAnswer === answer) {
       console.log('Correct!');
     } else {
-      console.log(`"${userAnswer}" is wrong answer ;(. Correct answer was ${answer}. Let's try again, ${name}!`);
+      console.log(`"${userAnswer}" is wrong answer ;(. Correct answer was ${answer}.
+      Let's try again, ${name}!`);
       return;
     }
   }
-  /* eslint-disable */
   console.log(`Congratulations, ${name}!`);
 };
 

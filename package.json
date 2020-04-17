@@ -12,7 +12,6 @@
     "brain-progression": "src/bin/brain-progression.js",
     "brain-prime": "src/bin/brain-prime.js"
   },
-  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/possesion/frontend-project-lvl1.git"

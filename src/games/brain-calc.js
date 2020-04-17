@@ -1,6 +1,7 @@
 import runBrainGames, { roundsCount } from '../index.js';
 import createRandomNumber from '../numberRandomizer.js';
 
+const description = 'What is the result of the expression?';
 const calculate = (operator, firstNum, secondNum) => {
   switch (operator) {
     case '+':
@@ -10,9 +11,8 @@ const calculate = (operator, firstNum, secondNum) => {
     case '*':
       return firstNum * secondNum;
     default:
-      break;
+      throw new Error(`wrong operator ${operator}`);
   }
-  return operator;
 };
 const getGameData = () => {
   const firstNumber = createRandomNumber(1, 100);
@@ -24,16 +24,11 @@ const getGameData = () => {
   return [question, answer];
 };
 
-const runCalc = () => {
-  const gameData = [];
+export default () => {
+  const rounds = [];
   for (let gameRound = 0; gameRound < roundsCount; gameRound += 1) {
     const [question, answer] = getGameData();
-    gameData.push([question, String(answer)]);
+    rounds.push([question, String(answer)]);
   }
-  return gameData;
-};
-
-export default () => {
-  const gameRule = 'What is the result of the expression?';
-  runBrainGames(runCalc, gameRule);
+  runBrainGames(rounds, description);
 };
