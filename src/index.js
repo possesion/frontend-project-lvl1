@@ -7,8 +7,8 @@ const runBrainGames = (rounds, description) => {
   console.log(`Hello, ${name}!`);
   console.log(description);
   /* eslint no-restricted-syntax: ["off", "ForOffStatement"] */
-  for (const number of rounds) {
-    const [question, answer] = number;
+  for (const round of rounds) {
+    const [question, answer] = round;
     console.log(`Question: ${question}`);
     const userAnswer = readlineSync.question('Your answer: ');
     if (userAnswer === answer) {

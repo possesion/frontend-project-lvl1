@@ -3,31 +3,31 @@ import createRandomNumber from '../numberRandomizer.js';
 
 const description = 'What number is missing in the progression?';
 const progressionSize = 10;
-const getQuestion = (firstElement, difference, index) => {
+const buildProgression = (firstElement, difference) => {
   const members = [];
-  for (let numbersCount = 0; numbersCount < progressionSize; numbersCount += 1) {
-    const element = firstElement + numbersCount * difference;
+  for (let i = 0; i < progressionSize; i += 1) {
+    const element = firstElement + i * difference;
     members.push(element);
   }
-  const answer = String(members[index]);
-  members[index] = '..';
-  const question = members.join(' ');
-  return [question, answer];
+  return members;
 };
 
-const getGameData = () => {
+const getRoundData = () => {
   const randomIndex = createRandomNumber(0, progressionSize - 1);
   const firstElement = createRandomNumber(1, 101);
   const difference = createRandomNumber(1, 11);
-  const [question, answer] = getQuestion(firstElement, difference, randomIndex);
+  const progression = buildProgression(firstElement, difference);
+  const answer = String(progression[randomIndex]);
+  progression[randomIndex] = '..';
+  const question = progression.join(' ');
   return [question, answer];
 };
 
 export default () => {
   const rounds = [];
-  for (let gameRound = 0; gameRound < roundsCount; gameRound += 1) {
-    const [question, answer] = getGameData();
-    rounds.push([question, answer]);
+  for (let i = 0; i < roundsCount; i += 1) {
+    const data = getRoundData();
+    rounds.push(data);
   }
   runBrainGames(rounds, description);
 };

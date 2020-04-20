@@ -14,7 +14,7 @@ const calculate = (operator, firstNum, secondNum) => {
       throw new Error(`wrong operator ${operator}`);
   }
 };
-const getGameData = () => {
+const getRoundData = () => {
   const firstNumber = createRandomNumber(1, 100);
   const secondNumber = createRandomNumber(1, 100);
   const operators = ['+', '-', '*'];
@@ -26,9 +26,9 @@ const getGameData = () => {
 
 export default () => {
   const rounds = [];
-  for (let gameRound = 0; gameRound < roundsCount; gameRound += 1) {
-    const [question, answer] = getGameData();
-    rounds.push([question, answer]);
+  for (let i = 0; i < roundsCount; i += 1) {
+    const data = getRoundData();
+    rounds.push(data);
   }
   runBrainGames(rounds, description);
 };

@@ -9,7 +9,7 @@ const gcd = (firstNum, secondNum) => {
   return gcd(secondNum, firstNum % secondNum);
 };
 
-const getGameData = () => {
+const getRoundData = () => {
   const firstNum = createRandomNumber(1, 101);
   const secondNum = createRandomNumber(1, 101);
   const question = `${firstNum} ${secondNum}`;
@@ -19,9 +19,9 @@ const getGameData = () => {
 
 export default () => {
   const rounds = [];
-  for (let gameRound = 0; gameRound < roundsCount; gameRound += 1) {
-    const [question, answer] = getGameData();
-    rounds.push([question, answer]);
+  for (let i = 0; i < roundsCount; i += 1) {
+    const data = getRoundData();
+    rounds.push(data);
   }
   runBrainGames(rounds, description);
 };

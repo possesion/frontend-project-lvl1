@@ -15,7 +15,7 @@ const isPrime = (number) => {
   return true;
 };
 
-const getGameData = () => {
+const getRoundData = () => {
   const question = createRandomNumber(1, 101);
   const answer = isPrime(question) ? 'yes' : 'no';
   return [question, answer];
@@ -23,9 +23,9 @@ const getGameData = () => {
 
 export default () => {
   const rounds = [];
-  for (let gameRound = 0; gameRound < roundsCount; gameRound += 1) {
-    const [question, answer] = getGameData();
-    rounds.push([question, answer]);
+  for (let i = 0; i < roundsCount; i += 1) {
+    const data = getRoundData();
+    rounds.push(data);
   }
   runBrainGames(rounds, description);
 };
